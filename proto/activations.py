@@ -1,10 +1,32 @@
 import numpy as np
 
-def sigmoid(x):
-  return 1 / (1 + np.exp(-x))
+class Sigmoid():
+  def __init__(self):
+    self.out = None
 
-def relu(x):
-  return np.maximum(0, x)
+  def forward(self, x):
+    out = 1 / (1 + np.exp(-x))
+    self.out = out
+    return out
+  
+  def backward(self, dt):
+    dx = dt * (1.0 - self.out) * self.out
+    return dx
+
+class Relu:
+  def __init__(self):
+    self.mask = None
+
+  def forward(self, x):
+    self.mask = (x <=0)
+    out = x.copy()
+    out[self.mask] = 0
+    return out
+
+  def backward(self, dt):
+    dt[self.mask] = 0
+    dx = dt
+    return dx
 
 def softmax(a):
   c = np.max(a)
