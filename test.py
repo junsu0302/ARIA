@@ -1,4 +1,7 @@
-from proto.NLP import preprocess, create_co_matrix, most_similar
+import numpy as np
+import matplotlib.pyplot as plt
+
+from proto.NLP import preprocess, create_co_matrix, ppmi
 
 
 text = 'You say goodbye and I say hello.'
@@ -9,4 +12,6 @@ vocab_size = len(word_to_id)
 
 C = create_co_matrix(corpus, vocab_size)
 
-most_similar('you', word_to_id, id_to_word, C, top=5)
+W = ppmi(C)
+
+U, S, V = np.linalg.svd(W)
