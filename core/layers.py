@@ -1,8 +1,28 @@
 import numpy as np
 
-from activations import softmax
-from losses import cross_entropy_error
-from utils import col2im, im2col
+from core.activations import softmax
+from core.losses import cross_entropy_error
+from core.utils import col2im, im2col
+
+class MatMul:
+  def __init__(self, W):
+    self.params = [W]
+    self.grads = [np.zeros_like(W)]
+    self.x = None
+
+  def forward(self, x):
+    W, = self.params
+    out = np.dot(x, W)
+    self.x = x
+    return out
+
+  def backward(self, dout):
+    W, = self.params
+    dx = np.dot(dout, W.T)
+    dW = np.dot(self.x.T, dout)
+    self.grads[0][...] = dW
+    return dx
+
 
 class Linear:
   def __init__(self, W, b):

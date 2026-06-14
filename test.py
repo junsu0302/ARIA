@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from proto.NLP import preprocess, create_co_matrix, ppmi
+from core.NLP import preprocess, create_co_matrix, ppmi
+from core.layers import MatMul
 
 
 text = 'You say goodbye and I say hello.'
@@ -14,4 +15,8 @@ C = create_co_matrix(corpus, vocab_size)
 
 W = ppmi(C)
 
-U, S, V = np.linalg.svd(W)
+c = np.array([[1, 0, 0, 0, 0, 0, 0]])
+W = np.random.randn(7, 3)
+layer = MatMul(W)
+h = layer.forward(c)
+print(h)

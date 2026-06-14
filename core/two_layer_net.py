@@ -1,10 +1,10 @@
 import numpy as np
 from collections import OrderedDict
 
-from proto.activations import sigmoid, softmax, Relu
-from proto.losses import cross_entropy_error
-from proto.maths import numerical_gradient
-from proto.layers import Linear, SoftmaxWithLoss
+from core.activations import sigmoid, softmax, Relu
+from core.losses import cross_entropy_error
+from core.maths import numerical_gradient
+from core.layers import Linear, SoftmaxWithLoss
 
 class TwoLayerNet:
   def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01):

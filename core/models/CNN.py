@@ -1,9 +1,9 @@
 import numpy as np
 from collections import OrderedDict
 
-from proto.maths import numerical_gradient
-from proto.layers import Convolution, Pooling, Linear, SoftmaxWithLoss
-from proto.activations import Relu
+from core.maths import numerical_gradient
+from core.layers import Convolution, Pooling, Linear, SoftmaxWithLoss
+from core.activations import Relu
 
 class SimpleConvNet:
   def __init__(self, input_dim=(1, 28, 28), 
